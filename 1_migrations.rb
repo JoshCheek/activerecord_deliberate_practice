@@ -45,7 +45,9 @@ end
 
 
 class TestColumnTypes < Minitest::Test
-  # Reference: http://guides.rubyonrails.org/active_record_migrations.html
+  # Reference:
+  #   Migrations:   http://guides.rubyonrails.org/active_record_migrations.html
+  #   Column types: http://api.rubyonrails.org/classes/ActiveRecord/ConnectionAdapters/Table.html
 
   # Challenge:
   #   Create a migration for a table that stores events Each event needs to have:
