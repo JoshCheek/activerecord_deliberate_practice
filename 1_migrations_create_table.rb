@@ -9,16 +9,6 @@ ActiveRecord::Schema.define do
   end
 
   # <-- Your work goes here!
-  create_table :events do |t|
-    t.string   :title, null: false
-    t.text     :description, default: 'n/a'
-    t.datetime :when
-    t.string   :location
-    t.integer  :max_attendees
-    t.boolean  :public, default: true
-    t.float    :rating
-    t.timestamps null: false
-  end
 end
 
 
@@ -151,16 +141,3 @@ class TestColumnTypes < Minitest::Test
     assert_equal 'n/a', Event.new.description
   end
 end
-
-
-# create_table
-#   modifiers:
-#     index       Adds an index for the column.
-# change_table
-#   remove
-#   rename
-# misc
-#   index
-#   running
-#   rolling back
-#   running in a given environment
