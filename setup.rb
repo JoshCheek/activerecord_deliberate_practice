@@ -8,8 +8,10 @@ ActiveRecord::Base.establish_connection adapter: 'sqlite3', database: ':memory:'
 
 
 class Minitest::Test
-  # order tests by default so that we can use --fail-fast
-  i_suck_and_my_tests_are_order_dependent!
+  # order tests so that we can use --fail-fast
+  def self.runnable_methods
+    instance_methods.grep(/^test_/)
+  end
 end
 
 RSpec.configure do |config|

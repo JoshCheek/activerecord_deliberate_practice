@@ -10,14 +10,14 @@ ActiveRecord::Schema.define do
 
   # <-- Your work goes here!
   create_table :events do |t|
-    t.string   :title
-    t.text     :description
+    t.string   :title, null: false
+    t.text     :description, default: 'n/a'
     t.datetime :when
     t.string   :location
     t.integer  :max_attendees
-    t.boolean  :public
+    t.boolean  :public, default: true
     t.float    :rating
-    t.timestamps
+    t.timestamps null: false
   end
 end
 
@@ -110,11 +110,11 @@ class TestColumnTypes < Minitest::Test
   end
 
   def test_events_have_a_created_at_which_is_a_timestamp
-    assert_in_delta Time.now, Event.create!.created_at, 1.second
+    assert_in_delta Time.now, Event.create!(title: '').created_at, 1.second
   end
 
   def test_events_have_an_updated_at_which_is_a_timestamp
-    event = Event.create!
+    event = Event.create!(title: '')
     assert_in_delta Time.now, event.updated_at, 1.second
   end
 
@@ -135,19 +135,27 @@ class TestColumnTypes < Minitest::Test
     assert_equal true,  event1.public?
     assert_equal false, event2.public?
   end
+
+
+  # Modifiers
+  def test_title_may_not_be_nil
+    Event.create! title: 'not nil'
+    assert_raises(ActiveRecord::StatementInvalid) { Event.create! title: nil }
+  end
+
+  def test_public_defaults_to_true
+    assert_equal true, Event.new.public?
+  end
+
+  def test_description_defaults_to_na
+    assert_equal 'n/a', Event.new.description
+  end
 end
 
 
 # create_table
 #   modifiers:
-#     limit       Sets the maximum size of the string/text/binary/integer fields.
-#     precision   Defines the precision for the decimal fields, representing the total number of digits in the number.
-#     scale       Defines the scale for the decimal fields, representing the number of digits after the decimal point.
-#     polymorphic Adds a type column for belongs_to associations.
-#     null        Allows or disallows NULL values in the column.
-#     default     Allows to set a default value on the column. Note that if you are using a dynamic value (such as a date), the default will only be calculated the first time (i.e. on the date the migration is applied).
 #     index       Adds an index for the column.
-#     required    Adds required: true for belongs_to associations and null: false to the column in the migration.
 # change_table
 #   remove
 #   rename
