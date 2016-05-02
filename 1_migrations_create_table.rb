@@ -21,7 +21,7 @@ end
 
 
 # TESTS
-class TestExampleUser < Minitest::Test
+class ExampleUserTest < Minitest::Test
   def test_it_has_a_name_which_is_a_string
     user = ExampleUser.new name: 'Jim'
     assert_equal 'Jim', user.name
@@ -34,7 +34,7 @@ class TestExampleUser < Minitest::Test
 end
 
 
-class TestColumnTypes < Minitest::Test
+class ColumnTypesTest < Minitest::Test
   # Reference:
   #   Migrations:   http://guides.rubyonrails.org/active_record_migrations.html
   #   Column types: http://api.rubyonrails.org/classes/ActiveRecord/ConnectionAdapters/Table.html
