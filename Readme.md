@@ -23,7 +23,7 @@ $ bundle install
 Run the tests in orer:
 
 ```
-$ mrspec 1_migrations.rb
+$ mrspec 1_migrations_create_table.rb
 ```
 
 Find the section "Your work goes here!", that's where you're going to
@@ -32,5 +32,8 @@ put your code.
 Read the description of what you need to do, look at the example to see
 one that is similar. Then write your code there so that it meets the requirements.
 
-You may need to follow the references, you may not (try guessing at what
-you think it might be before you try to look them up)
+You may need to follow the references, you may not.
+Either way, try guessing at what
+you think it might be before you try to look them up.
+
+**Your goal is to be able to perform these tasks later, without reference.**
