@@ -23,10 +23,10 @@ $ bundle install
 Run the tests in orer:
 
 ```
-$ mrspec 1_migrations_create_table.rb
+$ bundle exec mrspec 1_migrations_create_table.rb
 
 # and once that passes:
-$ mrspec 2_migrations_change_table.rb
+$ bundle exec mrspec 2_migrations_change_table.rb
 ```
 
 
