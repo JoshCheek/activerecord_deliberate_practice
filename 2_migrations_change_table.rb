@@ -38,17 +38,6 @@ ActiveRecord::Schema.define do
   "
 
   # <-- Your work goes here!
-  change_table :items do |t|
-    t.string :description, default: ''
-    t.rename :how_many, :quantity
-    t.change_default :quantity, 1
-    t.rename :sold_out, :in_stock
-    t.change_default :in_stock, true
-    t.remove :seller_id
-  end
-  execute "
-    update items set in_stock = not in_stock;
-  "
 end
 
 
