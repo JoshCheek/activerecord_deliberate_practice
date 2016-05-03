@@ -4,22 +4,10 @@ ActiveRecord::Schema.define do
 
   # MIGRATIONS
   # <-- your work goes here
-  create_table :jars do |t|
-  end
-  create_table :jelly_beans do |t|
-    t.integer :jar_id
-    t.string :color, default: 'orange'
-  end
 end
 
-
+# MODELS
 # <-- your work goes here
-class Jar < ActiveRecord::Base
-  has_many :jelly_beans
-end
-class JellyBean < ActiveRecord::Base
-  belongs_to :jar
-end
 
 
 # TESTS

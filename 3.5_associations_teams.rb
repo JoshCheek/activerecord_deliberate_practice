@@ -4,55 +4,11 @@ ActiveRecord::Schema.define do
 
   # MIGRATIONS
   # <-- your work goes here
-  create_table :teams do |t|
-    t.string :name
-  end
-  create_table :players do |t|
-    t.integer :team_id
-    t.string  :name
-    t.float   :batting_average, default: 0
-  end
-  create_table :fans_teams, primary_key: false do |t|
-    t.integer :fan_id
-    t.integer :team_id
-  end
-  create_table :fans_players, primary_key: false do |t|
-    t.integer :fan_id
-    t.integer :player_id
-  end
-  create_table :fans do |t|
-    t.string :name
-  end
 end
 
 
 # MODELS
 # <-- your work goes here
-class Team < ActiveRecord::Base
-  has_many :fans_team
-  has_many :players
-  has_many :fans, through: :fans_team
-end
-class Player < ActiveRecord::Base
-  belongs_to :team
-  has_many :teams, through: :fans_team
-  has_many :fans_player
-  has_many :fans, through: :fans_player
-end
-class FansTeam < ActiveRecord::Base
-  belongs_to :fan
-  belongs_to :team
-end
-class FansPlayer < ActiveRecord::Base
-  belongs_to :fan
-  belongs_to :player
-end
-class Fan < ActiveRecord::Base
-  has_many :fans_team
-  has_many :teams, through: :fans_team
-  has_many :fans_player
-  has_many :players, through: :fans_player
-end
 
 
 # TESTS

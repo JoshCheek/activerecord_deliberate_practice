@@ -4,38 +4,11 @@ ActiveRecord::Schema.define do
 
   # MIGRATIONS
   # <-- your work goes here
-  create_table :users do |t|
-    t.string :name
-  end
-  create_table :comments do |t|
-    t.integer :user_id
-    t.text    :comment
-    t.integer :post_id
-  end
-  create_table :posts do |t|
-    t.integer :user_id
-    t.string  :title
-    t.text    :body
-  end
 end
 
 
 # MODELS
 # <-- your work goes here
-class User < ActiveRecord::Base
-  has_many :posts
-  has_many :comments,   through: :posts
-  has_many :commenters, through: :posts
-end
-class Post < ActiveRecord::Base
-  belongs_to :user
-  has_many :comments
-  has_many :commenters, through: :comments, source: :user
-end
-class Comment < ActiveRecord::Base
-  belongs_to :user
-  belongs_to :post
-end
 
 
 # TESTS
