@@ -4,55 +4,11 @@ ActiveRecord::Schema.define do
 
   # MIGRATIONS
   # <-- your work goes here
-  create_table :teachers do |t|
-    t.string :name
-  end
-  create_table :courses do |t|
-    t.string  :name
-    t.integer :teacher_id
-  end
-  create_table :enrollments do |t|
-    t.integer :course_id
-    t.integer :student_id
-    t.integer :grade_id
-  end
-  create_table :students do |t|
-    t.string  :name
-    t.text    :contact_info
-  end
-  create_table :grades do |t|
-    t.string :letter
-    t.integer :percentage
-  end
 end
 
 
 # MODELS
 # <-- your work goes here
-class Teacher < ActiveRecord::Base
-  has_many :courses
-  has_many :students, through: :courses
-end
-class Course < ActiveRecord::Base
-  belongs_to :teacher
-  has_many   :enrollments
-  has_many   :students, through: :enrollments
-end
-class Enrollment < ActiveRecord::Base
-  belongs_to :course
-  belongs_to :student
-  belongs_to :grade
-  has_one    :teacher, through: :course
-end
-class Student < ActiveRecord::Base
-  has_many :enrollments
-  has_many :grades, through: :enrollments
-  has_many :teachers, through: :enrollments
-end
-class Grade < ActiveRecord::Base
-  has_many :enrollments
-  has_many :students, through: :enrollments
-end
 
 
 # TESTS
