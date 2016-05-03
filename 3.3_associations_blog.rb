@@ -65,9 +65,30 @@ class BlogTest < Minitest::Test
     assert_equal rod, comment.user
   end
 
+
+  def test_users_know_about_the_comments_they_wrote
+    # To get this one, I used:
+    #   has_many :comments_written, class_name: 'Comment'
+    # instead of the standard:
+    #   has_many :comments
+    # This option and others are listed at:
+    #   http://guides.rubyonrails.org/association_basics.html#options-for-has-many
+    jim  = User.create! name: 'Jim'
+    jan  = User.create! name: 'Jan'
+    jane = User.create! name: 'Jane' do |jane|
+      jane.posts.build title: 'This is a post!' do |post|
+        post.comments.build comment: 'first',  user: jim
+        post.comments.build comment: 'second', user: jan
+      end
+    end
+    assert_equal ['first'],  jim.comments_written.pluck(:comment)
+    assert_equal ['second'], jan.comments_written.pluck(:comment)
+  end
+
+
   def test_posts_can_have_commenters
-    # To get this one, I used the "source" option on my "has_many through"
-    # http://guides.rubyonrails.org/association_basics.html#options-for-has-many
+    # From the same url (http://guides.rubyonrails.org/association_basics.html#options-for-has-many)
+    # But this time, I used the "source" option
     mei  = User.create! name: 'Mei'
     sara = User.create! name: 'Sara' do |sara|
       sara.posts.build title: 'I am posting!' do |post|
@@ -81,7 +102,7 @@ class BlogTest < Minitest::Test
     assert_equal ['Mei', 'Sara'], post.commenters.pluck(:name)
   end
 
-  def test_users_know_about_the_comments_on_their_posts
+  def test_users_know_about_the_comments_they_received_on_their_posts
     jim  = User.create! name: 'Jim'
     jan  = User.create! name: 'Jan'
     jane = User.create! name: 'Jane' do |jane|
@@ -90,7 +111,7 @@ class BlogTest < Minitest::Test
         post.comments.build comment: 'second', user: jan
       end
     end
-    assert_equal ['first', 'second'], jane.comments.pluck(:comment)
+    assert_equal ['first', 'second'], jane.comments_received.pluck(:comment)
   end
 
   def test_users_know_about_the_commenters_on_their_posts
