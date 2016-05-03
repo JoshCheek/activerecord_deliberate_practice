@@ -57,18 +57,14 @@ class TeamsTest < Minitest::Test
 
 
   def test_fans_have_many_teams
-    carla = Fan.create! name: 'Carla' do |fan|
-      fan.teams.build name: 'Red Socks'
-      fan.teams.build name: 'Packers'
-    end
+    ed_socks  = Team.create! name: 'Red Socks'
+    packers    = Team.create! name: 'Packers'
+    blue_socks = Team.create! name: 'Blue Socks'
+    carla = Fan.create! name: 'Carla', teams: [red_socks, packers]
+    kyle  = Fan.create! name: 'Kyle',  teams: [red_socks, blue_socks]
 
-    kyle = Fan.create! name: 'Kyle' do |fan|
-      fan.teams.build name: 'Blue Socks'
-      fan.teams.build name: '49ers'
-    end
-
-    assert_equal ['Red Socks', 'Packers'], carla.teams.pluck(:name)
-    assert_equal ['Blue Socks', '49ers'],  kyle.teams.pluck(:name)
+    assert_equal [red_socks, packers],    carla.teams
+    assert_equal [red_socks, blue_socks], kyle.teams
   end
 
 
