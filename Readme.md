@@ -30,8 +30,8 @@ $ bundle exec mrspec 2_migrations_change_table.rb
 ```
 
 
-First Pass
-----------
+First Pass: Discover
+--------------------
 
 **Your goal is to learn these well enough to perform this again, without reference.**
 
@@ -59,8 +59,8 @@ As you get them solved, commit your solution.
 If you get stuck on one for very long, skip that test and move to the next one.
 
 
-Second Pass
------------
+Second Pass: Correct
+--------------------
 
 **Your goal is to solidify your knowledge and correct any errors**
 
@@ -89,8 +89,8 @@ Do that until you can do it correctly, then undo 2 more steps, solve your way th
 and solve the difficult challenge correctly again. Do not move past this until you can do it correctly.
 
 
-Third Pass
-----------
+Third Pass: Optimize
+--------------------
 
 **Your goal is to optimize the knowledge in your brain by doing these as quickly as possible with no errors and no references**
 
@@ -100,10 +100,12 @@ If you get it wrong, peform the same correcting behaviour you did in the second 
 Do this in a branch named `third_pass`, the process to do this will be the same as switching from `first_pass` to `second_pass`.
 
 
-Fourth through x passes
------------------------
+Fourth through x passes: Ensure
+-------------------------------
 
-These are all the same as the third pass. You are finished when you can get completely through a pass in a single sitting,
+If you didn't get the third pass, then do it again however many times it takes to get there.
+It may be worthwhile to take a short break before doing this one.
+You are finished when you can get completely through a pass in a single sitting,
 without error and without referencing the example or anything else. Cache this knowledge in your brain.
 
 
